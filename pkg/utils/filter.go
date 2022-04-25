@@ -111,7 +111,8 @@ func (f *AgentPodFilter) Filter(pod *corev1.Pod, isJob bool) *FilteredMessageRes
 
 						if containerResult.Details == "" {
 							containerResult.Details = fmt.Sprintf("The application exited with exit code %d. "+
-								"Please see the list of exit codes in the Porter documentation: <docs-link>",
+								"We recommend a resource such as https://intl.cloud.tencent.com/document/product/457/35758 "+
+								"to further debug the reason for the crash.",
 								status.LastTerminationState.Terminated.ExitCode)
 						}
 					} else if status.LastTerminationState.Terminated.Reason == "OOMKilled" {
@@ -159,7 +160,8 @@ func (f *AgentPodFilter) Filter(pod *corev1.Pod, isJob bool) *FilteredMessageRes
 
 				if containerResult.Details == "" {
 					containerResult.Details = fmt.Sprintf("The application exited with exit code %d. "+
-						"Please see the list of exit codes in the Porter documentation: <docs-link>",
+						"We recommend a resource such as https://intl.cloud.tencent.com/document/product/457/35758 "+
+						"to further debug the reason for the crash.",
 						status.State.Terminated.ExitCode)
 				}
 			} else if status.State.Terminated.Reason == "OOMKilled" {
@@ -179,7 +181,8 @@ func (f *AgentPodFilter) Filter(pod *corev1.Pod, isJob bool) *FilteredMessageRes
 			containerResult.Summary = fmt.Sprintf("The application exited with exit code %d",
 				status.State.Terminated.ExitCode)
 			containerResult.Details = fmt.Sprintf("The application exited with exit code %d. "+
-				"Please see the list of exit codes in the Porter documentation: <docs-link>",
+				"We recommend a resource such as https://intl.cloud.tencent.com/document/product/457/35758 "+
+				"to further debug the reason for the crash.",
 				status.State.Terminated.ExitCode)
 		}
 
